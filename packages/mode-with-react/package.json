@@ -1,0 +1,30 @@
+{
+  "name": "iris-model-with-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "build"
+  ],
+  "main": "./build/iris-model-with-react.js",
+  "module": "./build/iris-model-with-react.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    "types": "./build/index.d.ts",
+    "import": "./build/model-with-react.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.6",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-externals": "^0.6.2"
+  },
+  "dependencies": {
+    "iris-state-model": "workspace:^"
+  }
+}
