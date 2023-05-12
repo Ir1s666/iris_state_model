@@ -1,0 +1,27 @@
+{
+  "name": "iris-state-model",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "build"
+  ],
+  "main": "./build/iris-state-model.umd.cjs",
+  "module": "./build/iris-state-model.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    "types": "./build/index.d.ts",
+    "import": "./build/iris-state-model.js",
+    "require": "./build/iris-state-model.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vite-plugin-dts": "^2.3.0"
+  },
+  "dependencies": {}
+}
