@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { viteExternalsPlugin } from 'vite-plugin-externals';
+// import { viteExternalsPlugin } from 'vite-plugin-externals';
 import pkg from './package.json';
 
 export default defineConfig({
@@ -8,8 +8,8 @@ export default defineConfig({
     lib: {
       entry: './lib/index.ts',
       name: pkg.name,
-      formats: ['es'],
-      fileName: pkg.name
+      formats: ['es', 'cjs'],
+      fileName: 'index'
     },
     outDir: 'build',
     rollupOptions:{

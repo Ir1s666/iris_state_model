@@ -6,16 +6,18 @@
   "files": [
     "build"
   ],
-  "main": "./build/iris-model-with-react.js",
-  "module": "./build/iris-model-with-react.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
     "types": "./build/index.d.ts",
-    "import": "./build/model-with-react.js"
+    "require": "./build/index.umd.cjs",
+    "import": "./build/index.js"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "vite build",
+    "watch": "vite build -w"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
