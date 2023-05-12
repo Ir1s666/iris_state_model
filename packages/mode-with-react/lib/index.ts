@@ -1,12 +1,14 @@
 import type { StoreApis } from 'iris-state-model';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
+
+
 
 export const useStore = <TState>(store: StoreApis<TState>) => {
   const [_, updateStore] = useState<TState>(store.getState());
   useEffect(() => {
 
-    const listener = (_: TState, newState: TState) => {
-      updateStore(newState);
+    const listener = (newState: Partial<TState>, state: TState) => {
+      updateStore({ ...state, ...newState });
     };
     const unSubscribe = store.subscribe(listener);
     return unSubscribe;
@@ -21,6 +23,21 @@ export const useStore = <TState>(store: StoreApis<TState>) => {
     useDispatch: () => {
       return (state: TState | Partial<TState>) => {
         store.setState(state)
+      }
+    }
+  }
+}
+
+export const useSyncStore = <TState>(store: StoreApis<TState>) => {
+  const { subscribe, getState, setState } = store;
+  const _ = useSyncExternalStore(subscribe, getState)
+  return {
+    useSyncSelector: <T = Partial<TState>>(selector: (state: TState) => T) => {
+      return selector(_)
+    },
+    useSyncDispatch: () => {
+      return (state: TState | Partial<TState>) => {
+        setState(state)
       }
     }
   }
