@@ -14,9 +14,13 @@ let initState = {
 const _store = createStore<typeof initState>(initState);
 
 const App = () => {
-  const { useSelector, useDispatch } = useStore(_store);
+  const { useSelector, useDispatch, useSyncSelector, useDispatch } = useStore(_store);
+  
   const num = useSelector<number>((state) => state.counter.count);
+  const num_sync = useSyncSelector<number>((state) => state.counter.count);
+  
   const dispatch = useDispatch();
+  const dispatch_sync = useSyncDispatch();
 
   return (
     <>
@@ -24,7 +28,14 @@ const App = () => {
         dispatch({ counter: { count: Math.random() } });
       }}
       >ChangeNumber with dispatch</button>
+      
+      <button onClick={() => {
+        dispatch_sync({ counter: { count: Math.random() } });
+      }}
+      >ChangeNumber with sync</button>
+      ------
       {num}
+      {num_sync}
     </>
   )
 }
