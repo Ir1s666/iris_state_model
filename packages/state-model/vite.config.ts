@@ -7,7 +7,7 @@ export default defineConfig({
     lib: {
       entry: './lib/index.ts',
       name: pkg.name,
-      formats: ['es', 'cjs', 'umd'],
+      formats: ['es'],
       fileName: pkg.name
     },
     outDir: 'build'
