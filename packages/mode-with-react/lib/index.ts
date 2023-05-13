@@ -1,5 +1,5 @@
 import type { StoreApis, StateModel } from 'iris-state-model';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 
 const useForceUpdate = () => {
   const [_, setState] = useState({});
@@ -26,3 +26,9 @@ export const useStore = <TState>(store: StoreApis<TState> | StateModel<TState>) 
     }
   }
 }
+
+export const useModel = <TState>(store: StateModel<TState>) => {
+  const model = useSyncExternalStore(store.subscribe, store.getState);
+  
+  return model
+};
