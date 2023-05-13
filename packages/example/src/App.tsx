@@ -1,5 +1,5 @@
-import { createStore } from 'iris-state-model';
-import { useStore } from 'iris-model-with-react'
+import { useStore } from 'iris-model-with-react';
+import { StateModel } from 'iris-state-model';
 
 let initState = {
   counter: {
@@ -9,8 +9,7 @@ let initState = {
 
 let i = 0;
 
-// 这儿实际上是实例化，可以用class替代
-const _store = createStore<typeof initState>(initState);
+const _store = new StateModel(initState);
 
 const App = () => {
   const { useSelector, useDispatch } = useStore(_store);

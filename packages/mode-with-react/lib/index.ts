@@ -1,4 +1,4 @@
-import type { StoreApis } from 'iris-state-model';
+import type { StoreApis, StateModel } from 'iris-state-model';
 import { useState, useEffect } from 'react';
 
 const useForceUpdate = () => {
@@ -6,7 +6,7 @@ const useForceUpdate = () => {
   return () => setState({});
 }
 
-export const useStore = <TState>(store: StoreApis<TState>) => {
+export const useStore = <TState>(store: StoreApis<TState> | StateModel<TState>) => {
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
