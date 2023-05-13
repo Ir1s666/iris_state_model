@@ -1,30 +1,23 @@
-import { useStore } from 'iris-model-with-react';
+import { useModel } from 'iris-model-with-react';
 import { StateModel } from 'iris-state-model';
 
-let initState = {
-  counter: {
-    count: 0
+class Counter extends StateModel<{ counter: { count: number } }> {
+  constructor() {
+    super({ counter: { count: 0 } })
   }
 };
 
-let i = 0;
-
-const _store = new StateModel(initState);
+const counter = new Counter();
 
 const App = () => {
-  const { useSelector, useDispatch } = useStore(_store);
-  // @ts-ignore
-  const num = useSelector<number>((state) => state.counter.count);
+  const { useSelector, useDispatch } = useModel(counter);
   const dispatch = useDispatch();
+  const count = useSelector((state) => state.counter.count)
 
   return (
-    <>
-      <button onClick={() => {
-        dispatch({ counter: { count: ++i } });
-      }}
-      >ChangeNumber with dispatch</button>
-      {num}
-    </>
+    <div onClick={() => dispatch({ counter: { count: count + 1 } })}>
+      {count}
+    </div>
   )
 }
 export default App;
