@@ -1,11 +1,11 @@
-type Listener<T> = (nextState: T, currentState: T) => void;
+type Listener = () => void;
 
 
 export type StoreApis<TState> = {
   // 获取状态快照
   getState(): TState,
   // 订阅器
-  subscribe(listener: Listener<TState>): () => void,
+  subscribe(listener: Listener): () => void,
   // 执行器，调用后会触发所有订阅器
   setState(newState: TState | Partial<TState>): void
 }
