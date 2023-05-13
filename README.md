@@ -1,9 +1,9 @@
 # iris_state_model
-React驱动状态模型（照搬redux api= =），当然你也可以单独用state-model中的createStore创建一个自己的模型
+React驱动状态模型（照搬redux api= =）
 
 # 食用方式：
 ```
-import { createStore } from 'iris-state-model';
+import { StateModel } from 'iris-state-model';
 import { useStore } from 'iris-model-with-react';
 
 let initState = {
@@ -11,16 +11,13 @@ let initState = {
     count: 0
   }
 }
-const _store = createStore<typeof initState>(initState);
+const _store = new StateModel(initState);
 
 const App = () => {
-  const { useSelector, useDispatch, useSyncSelector, useDispatch } = useStore(_store);
+  const { useSelector, useDispatch } = useStore(_store);
   
   const num = useSelector<number>((state) => state.counter.count);
-  const num_sync = useSyncSelector<number>((state) => state.counter.count);
-  
   const dispatch = useDispatch();
-  const dispatch_sync = useSyncDispatch();
 
   return (
     <>
@@ -28,14 +25,7 @@ const App = () => {
         dispatch({ counter: { count: Math.random() } });
       }}
       >ChangeNumber with dispatch</button>
-      
-      <button onClick={() => {
-        dispatch_sync({ counter: { count: Math.random() } });
-      }}
-      >ChangeNumber with sync</button>
-      ------
       {num}
-      {num_sync}
     </>
   )
 }
